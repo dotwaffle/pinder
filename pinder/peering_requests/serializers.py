@@ -33,4 +33,5 @@ class PostRequestSerializer(serializers.ModelSerializer):
             "id",
             "sender",
             "receiver",
+            "ixlan_id",
         )
