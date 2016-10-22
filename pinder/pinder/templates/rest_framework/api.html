@@ -1,0 +1,46 @@
+{% extends "rest_framework/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}TweetPile :: API{% endblock title %}
+
+
+{% block style %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'pinder/css/bootstrap.min.css' %}" />
+{#  <link rel="stylesheet" href="{% static 'contrib/yeti/fonts.css' %}" />#}
+{#  <link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/default.css" %}"/>#}
+{#  <link rel="stylesheet" href="{% static 'contrib/fontawesome/css/font-awesome.min.css' %}" />#}
+  <style>
+    h1, h2, h3, h4, h5, h6 {
+      color: #999;
+    }
+    .navbar {
+      background: #000;
+      border: 0;
+    }
+    .prettyprint {
+      background-color: #333;
+      color: #999;
+      border-color: #666;
+    }
+    .form-control {
+      background-color: #000;
+    }
+  </style>
+{% endblock %}
+
+
+{% block branding %}
+  <a class='navbar-brand' rel="nofollow" href='http://tweetpile.com/'>
+    <img src="{% static 'pinder/img/logo.png' %}" style="height: 30px;" />
+  </a>
+{% endblock %}
+
+
+{% block userlinks %}
+  <li><a href="{% url 'login-hack' %}">Login Hack</a></li>
+  <li><a href="{% url 'index' %}">Home</a></li>
+{% endblock userlinks %}

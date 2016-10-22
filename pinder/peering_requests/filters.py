@@ -11,6 +11,7 @@ class RequestFilterSet(filters.FilterSet):
             "id",
             "sender",
             "receiver",
+            "ixlan_id",
             "state",
             "sender_is_ready",
             "receiver_is_ready",
