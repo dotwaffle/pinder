@@ -5,6 +5,8 @@ from rest_framework.routers import DefaultRouter
 
 from peering_requests.views import RequestViewSet
 
+from .views import IndexView
+
 
 router = DefaultRouter()
 router.register(r'requests', RequestViewSet)
@@ -15,5 +17,6 @@ urlpatterns = [
         include('rest_framework.urls', namespace="rest_framework")
     ),
     url(r"^api/", include(router.urls, namespace="drf")),
+    url(r"^$", IndexView.as_view(), name="index"),
     url(r'^admin/', admin.site.urls),
 ]
