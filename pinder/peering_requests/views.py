@@ -1,6 +1,8 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Request
@@ -20,9 +22,10 @@ class RequestViewSet(ModelViewSet):
     serializer_class = RequestSerializer
     pagination_class = StandardPagination
     permission_classes = (AllowAny,)
-    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter)
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     filter_class = RequestFilterSet
     ordering_fields = ("sender", "receiver", "created", "modified")
+    renderer_classes = (JSONRenderer, BrowsableAPIRenderer)
 
     def get_serializer_class(self, *args, **kwargs):
         if self.request.method == "POST":

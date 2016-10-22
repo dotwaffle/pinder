@@ -1,19 +1,15 @@
-from rest_framework import filters
+import django_filters
 
 from .models import Request
 
 
-class RequestFilterSet(filters.FilterSet):
+class RequestFilterSet(django_filters.FilterSet):
 
-    class Meta(object):
+    class Meta:
         model = Request
-        fields = [
-            "id",
-            "sender",
-            "receiver",
+        fields = (
             "state",
             "sender_is_ready",
             "receiver_is_ready",
-            "created",
-            "modified"
-        ]
+            "ixlan_id"
+        )

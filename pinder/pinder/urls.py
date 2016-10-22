@@ -4,6 +4,7 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
 from peering_requests.views import RequestViewSet
+from users.views import LoginView
 
 from .views import IndexView
 
@@ -18,5 +19,6 @@ urlpatterns = [
     ),
     url(r"^api/", include(router.urls, namespace="drf")),
     url(r"^$", IndexView.as_view(), name="index"),
+    url(r"/hacks/login", LoginView.as_view(), name="login-hack"),
     url(r'^admin/', admin.site.urls),
 ]
