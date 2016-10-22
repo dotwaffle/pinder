@@ -6,12 +6,14 @@ from django.contrib.auth.models import User
 class Request(models.Model):
 
     STATE_WAITING = "waiting"
-    STATE_ACCEPTED = "accepted"
+    STATE_IN_PROGRESS = "in-progress"
+    STATE_HOLD = "hold"
     STATE_REJECTED = "rejected"
 
     STATES = (
         (STATE_WAITING, "Waiting"),
-        (STATE_ACCEPTED, "Accepted"),
+        (STATE_IN_PROGRESS, "In Progress"),
+        (STATE_HOLD, "On Hold"),
         (STATE_REJECTED, "Rejected"),
     )
 
