@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+
+    <!-- Include the AngularJS library -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+</head>
+
+<body ng-app="PinderApp" style="background-color:#dee3e3">
+    <!--
+    <nav class="navbar navbar-default" style="background-color: #cdd4d6">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img style="height: 30px" alt="Brand" src="https://peeringdb.com/s//logo-2-0.png">
+                </a>
+            </div>
+        </div>
+    </nav>
+-->
+
+    <div class="margin-top-50" ng-controller="MainController" ng-init="getIXPS()">
+        <p class="text"><strong>Pinder</strong> peering is never been so sexy!</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <form>
+                        <div class="form-group">
+                            <label>Source</label>
+                            <input type="text" class="form-control" ng-model="scrASN" placeholder="Insert Source ASN">
+                        </div>
+                        <div class="form-group">
+                            <label>Destination</label>
+                            <input type="text" class="form-control" ng-model="dstASN" placeholder="Insert Source ASN">
+                        </div>
+                        <button type="submit" class="btn pinder-button pull-right" ng-click="findIX()">Submit</button>
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <p class="text-center"> You can peer with <strong> {{dstASN}} </strong> directly on these IXs</p>
+
+                    <div class="row">
+                        <div>
+                            <img class="img-responsive center-block margin-top-50" id="mySpinner" src="img/loader.gif" ng-show="loading" />
+                            <a class="col-md-4 col-md-offset-2 btn pinder-button margin-bottom-10" ng-repeat="ixp in ixps | limitTo: ixps.length /2: 0">
+                            {{ixp.name}}
+                        </a>
+                            <a class="col-md-4 col-md-offset-2 btn pinder-button margin-bottom-10" ng-repeat="ixp in ixps | limitTo: ixps.length /2: ixps.length /2">
+                            {{ixp.name}}
+                        </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+
+    <!-- Services -->
+    <script src="js/services/peeringDB.js"></script>
+
+    <!-- Directives -->
+
+
+</body>
