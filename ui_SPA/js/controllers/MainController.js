@@ -24,6 +24,7 @@ app.controller('MainController',  function($scope, peeringdbFactory) {
     
     $scope.findIX = function(){
         $scope.loading = true;
+        $scope.ixps = [];
         setTimeout(function(){
             peeringdbFactory.getIXPS()
             .then(function(data){

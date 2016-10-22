@@ -3,26 +3,18 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link href="css/main.css" rel="stylesheet" />
 
     <!-- Include the AngularJS library -->
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
 <body ng-app="PinderApp" style="background-color:#dee3e3">
-    <!--
-    <nav class="navbar navbar-default" style="background-color: #cdd4d6">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img style="height: 30px" alt="Brand" src="https://peeringdb.com/s//logo-2-0.png">
-                </a>
-            </div>
-        </div>
-    </nav>
--->
-
     <div class="margin-top-50" ng-controller="MainController" ng-init="getIXPS()">
         <p class="text"><strong>Pinder</strong> peering is never been so sexy!</p>
         <div class="container">
@@ -73,6 +65,5 @@
     <script src="js/services/peeringDB.js"></script>
 
     <!-- Directives -->
-
 
 </body>

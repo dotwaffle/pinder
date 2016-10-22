@@ -1,6 +1,6 @@
 app.factory('peeringdbFactory', function($http, $q){
     var service = {};
-    var _baseUrl = "/js/data/";
+    var _baseUrl = "/static/js/data/";
     service.getByASN = function (asnumber){
         var deferred = $q.defer();
         $http({
@@ -13,7 +13,7 @@ app.factory('peeringdbFactory', function($http, $q){
         });
         return deferred.promise;
     };
-    
+
     service.getIXPS = function (){
         var deferred = $q.defer();
         $http({
