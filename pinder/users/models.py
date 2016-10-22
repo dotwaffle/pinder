@@ -6,8 +6,8 @@ from .managers import UserManager
 
 class Isp(models.Model):
 
+    asn = models.PositiveIntegerField(primary_key=True)
     name = models.CharField(max_length=128)
-    asn = models.PositiveIntegerField()
 
     def __str__(self):
         return self.name
