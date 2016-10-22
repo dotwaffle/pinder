@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -14,8 +15,10 @@ class Request(models.Model):
         (STATE_REJECTED, "Rejected"),
     )
 
-    sender = models.ForeignKey(User, related_name="requests_received")
-    receiver = models.ForeignKey(User, related_name="requests_sent")
+    sender = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="requests_received")
+    receiver = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="requests_sent")
 
     state = models.CharField(
         choices=STATES, default=STATE_WAITING, max_length=8)

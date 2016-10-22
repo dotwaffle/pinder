@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "peering_requests.apps.PeeringRequestsConfig",
+    "users.apps.UsersConfig",
 
     "rest_framework",
     "crispy_forms",
@@ -125,3 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# User stuffs
+
+AUTH_USER_MODEL = "users.User"
+LOGIN_URL = "/users/login/"
+LOGIN_REDIRECT_URL = "/"
