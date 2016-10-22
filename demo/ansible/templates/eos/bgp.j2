@@ -1,0 +1,10 @@
+ip routing
+
+default router bgp
+router bgp {{ asn }}
+{% for session in accepted_requests.sessions %}
+{% set peer_asn = session[0] if asn == session[1] else session[1] %}
+neighbor {{ peers.peering_info['{}'.format(peer_asn)].ipaddr4 }} remote-as {{ peer_asn }}
+address-family ipv4
+neighbor {{ peers.peering_info['{}'.format(peer_asn)].ipaddr4 }} activate
+{% endfor %}

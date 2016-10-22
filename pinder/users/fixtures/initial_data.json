@@ -1,0 +1,61 @@
+[
+
+  {"model": "users.isp", "pk": 1234, "fields": {"name": "Alpha"}},
+  {"model": "users.isp", "pk": 5678, "fields": {"name": "Bravo"}},
+
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$rayxc6scGyR8$JXHM2aqsPE/CekrnNRZ/2DtxSGvDQjnRqRfEFSAf1HI=",
+      "last_login": null,
+      "is_superuser": true,
+      "name": "Administrator",
+      "email": "admin@nowhere.ca",
+      "isp": 1234,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2016-10-22T13:40:01.207Z",
+      "date_modified": "2016-10-22T13:40:01.207Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$DjfW9jQJQN8F$YKomIgWpmc0D0rLIzsGstZXoGhfvr3hJWv1HxFpD+Sc=",
+      "last_login": null,
+      "is_superuser": true,
+      "name": "User 0",
+      "email": "user0@nowhere.ca",
+      "isp": 5678,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2016-10-22T13:42:15.144Z",
+      "date_modified": "2016-10-22T13:42:15.144Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$IDLXGEZ7Tchr$MEKmNjmKtXzOxQIPkKvYe8qccZDPAYXUaZrIaO+HdwM=",
+      "last_login": null,
+      "is_superuser": true,
+      "name": "User 1",
+      "email": "user1@nowhere.ca",
+      "isp": 1234,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2016-10-22T13:42:28.585Z",
+      "date_modified": "2016-10-22T13:42:28.585Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+
+]

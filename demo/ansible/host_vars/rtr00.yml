@@ -1,0 +1,6 @@
+---
+domain: acme.org
+
+et1_address: 10.0.0.0/24
+
+asn: 65100
