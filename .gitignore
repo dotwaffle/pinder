@@ -56,3 +56,7 @@ docs/_build/
 .idea
 
 .vagrant
+.compiled
+*.swp
+
+db.sqlite3
