@@ -56,3 +56,5 @@ docs/_build/
 .idea
 
 .vagrant
+.compiled
+*.swp
