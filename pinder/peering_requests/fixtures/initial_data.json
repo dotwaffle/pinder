@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "sender": 2,
-      "receiver": 1234,
+      "receiver": 65100,
       "ixlan_id": 9999,
       "state": "waiting",
       "sender_is_ready": false,
@@ -18,7 +18,7 @@
     "pk": 2,
     "fields": {
       "sender": 3,
-      "receiver": 5678,
+      "receiver": 65200,
       "ixlan_id": 9999,
       "state": "waiting",
       "sender_is_ready": false,
