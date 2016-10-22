@@ -1,3 +1,5 @@
+from django.views.generic import DetailView
+
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
@@ -31,3 +33,8 @@ class RequestViewSet(ModelViewSet):
         if self.request.method == "POST":
             return PostRequestSerializer
         return RequestSerializer
+
+
+class RequestDetailView(DetailView):
+    model = Request
+    template_name = "peering_requests/detail.html"

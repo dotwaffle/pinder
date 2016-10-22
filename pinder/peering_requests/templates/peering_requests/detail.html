@@ -1,0 +1,10 @@
+{% extends 'pinder/base.html' %}
+
+{% block body %}
+  In this page, you can access the request in question with {{ object }}:
+  <ul>
+    <li>Request id: {{ object.id }}</li>
+    <li>Request sender: {{ object.sender }}</li>
+    <li>Request sender isp: {{ object.sender.isp }}</li>
+  </ul>
+{% endblock body %}
