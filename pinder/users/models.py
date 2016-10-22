@@ -4,6 +4,15 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
 
 
+class Isp(models.Model):
+
+    name = models.CharField(max_length=128)
+    asn = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name
+
+
 class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
@@ -11,7 +20,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     name = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
-    asn = models.PositiveIntegerField()
+    isp = models.ForeignKey(Isp)
 
     is_staff = models.BooleanField(
         "Staff status",
