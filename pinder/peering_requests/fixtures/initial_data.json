@@ -1,0 +1,30 @@
+[
+  {
+    "model": "peering_requests.request",
+    "pk": 1,
+    "fields": {
+      "sender": 2,
+      "receiver": 2,
+      "ixlan_id": 9999,
+      "state": "waiting",
+      "sender_is_ready": false,
+      "receiver_is_ready": false,
+      "created": "2016-10-22T14:20:26.665Z",
+      "modified": "2016-10-22T14:20:26.665Z"
+    }
+  },
+  {
+    "model": "peering_requests.request",
+    "pk": 2,
+    "fields": {
+      "sender": 3,
+      "receiver": 1,
+      "ixlan_id": 9999,
+      "state": "waiting",
+      "sender_is_ready": false,
+      "receiver_is_ready": false,
+      "created": "2016-10-22T14:20:48.395Z",
+      "modified": "2016-10-22T14:20:48.395Z"
+    }
+  }
+]

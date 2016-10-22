@@ -16,7 +16,7 @@ class Isp(models.Model):
 class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["name", "asn"]
+    REQUIRED_FIELDS = ["name"]
 
     name = models.CharField(max_length=128)
     email = models.EmailField(unique=True)

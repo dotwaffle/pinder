@@ -1,9 +1,14 @@
 from rest_framework import serializers
 
+from users.serializers import IspSerializer, UserSerializer
+
 from .models import Request
 
 
-class RequestSerializer(serializers.HyperlinkedModelSerializer):
+class RequestSerializer(serializers.ModelSerializer):
+
+    sender = UserSerializer(read_only=True)
+    receiver = IspSerializer(read_only=True)
 
     class Meta(object):
         model = Request
@@ -19,7 +24,7 @@ class RequestSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class PostRequestSerializer(serializers.HyperlinkedModelSerializer):
+class PostRequestSerializer(serializers.ModelSerializer):
 
     class Meta(object):
         model = Request

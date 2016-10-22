@@ -17,8 +17,8 @@ class Request(models.Model):
 
     sender = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name="requests_received")
-    receiver = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name="requests_sent")
+    receiver = models.ForeignKey("users.Isp", related_name="requests_sent")
+    ixlan_id = models.PositiveIntegerField()
 
     state = models.CharField(
         choices=STATES, default=STATE_WAITING, max_length=8)
@@ -28,3 +28,7 @@ class Request(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "Peering request from {} to {}".format(
+            self.sender, self.receiver)
