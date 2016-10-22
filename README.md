@@ -13,3 +13,9 @@ Swipe right on a new peering relationship
         ./manage.py loaddata peering_requests/fixtures/initial_data.json
 5. Run the development server with `./manage.py runserver`
 6. Open your browser and visit http://localhost:8000/api/
+
+The password for the user accounts created above is `guest`:
+
+* `admin@nowhere.ca`/`guest`
+* `user0@nowhere.ca`/`guest`
+* `user1@nowhere.ca`/`guest`
