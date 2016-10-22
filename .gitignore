@@ -58,3 +58,5 @@ docs/_build/
 .vagrant
 .compiled
 *.swp
+
+db.sqlite3
