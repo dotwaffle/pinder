@@ -1,0 +1,9 @@
+@@ -27,7 +27,7 @@
+ interface Management1
+    ip address 10.0.2.15/24
+ !
+-no ip routing
++ip routing
+ !
+ router bgp 65200
+    neighbor 10.0.0.0 remote-as 65100
