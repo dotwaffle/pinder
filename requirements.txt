@@ -1,2 +1,4 @@
 Django
 djangorestframework
+django-crispy-forms
+django-filter
