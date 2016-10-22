@@ -24,7 +24,7 @@
   tasks:
     - name: Get accepted requests from pinder
       pinder:
-        state: accepted
+        state: 'in-progress'
       register: accepted_requests
       tags: [print_action]
     - name: Get peeringdb information

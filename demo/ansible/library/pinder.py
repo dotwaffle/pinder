@@ -1,20 +1,21 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-mocked_data = [
-    (65100, 65200, 781, 'accepted', ''),
-]
+import hammock
+
 
 def main():
     module = AnsibleModule(
         argument_spec=dict(
-            state=dict(type='str', required=True, choices=['pending', 'accepted', 'rejected']),
+            state=dict(type='str', required=True, choices=['in-progress']),
         ),
         supports_check_mode=True
     )
     state = module.params['state']
 
-    sessions = mocked_data
+    pinder = hammock.Hammock('http://127.0.0.1:8000')
+
+    sessions = pinder.api.requests.GET(params='state={}'.format(state)).json()['results']
     module.exit_json(sessions=sessions, msg=str(sessions))
 
 
