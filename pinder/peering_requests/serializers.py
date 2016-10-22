@@ -17,3 +17,14 @@ class RequestSerializer(serializers.HyperlinkedModelSerializer):
             "created",
             "modified"
         )
+
+
+class PostRequestSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta(object):
+        model = Request
+        fields = (
+            "id",
+            "sender",
+            "receiver",
+        )

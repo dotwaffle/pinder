@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Request
-from .serializers import RequestSerializer
+from .serializers import RequestSerializer, PostRequestSerializer
 from .filters import RequestFilterSet
 
 
@@ -23,3 +23,8 @@ class RequestViewSet(ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter)
     filter_class = RequestFilterSet
     ordering_fields = ("sender", "receiver", "created", "modified")
+
+    def get_serializer_class(self, *args, **kwargs):
+        if self.request.method == "POST":
+            return PostRequestSerializer
+        return RequestSerializer
