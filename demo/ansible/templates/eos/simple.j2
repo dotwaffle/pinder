@@ -1,0 +1,8 @@
+hostname {{ inventory_hostname }}
+ip domain-name {{ domain }}
+
+default interface et1
+interface et1
+  no switchport 
+  ip address {{ et1_address }}
+  no shutdown

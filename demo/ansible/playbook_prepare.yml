@@ -1,0 +1,43 @@
+---
+- name: Simple configuration
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars:
+      conf_dir: "{{ playbook_dir }}/.compiled/"
+      host_dir: "{{ conf_dir}}/{{ inventory_hostname}}"
+
+  pre_tasks:
+     - name: Make sure there are no remains from a previous run
+       file:
+         path: "{{ host_dir }}"
+         state: absent
+       changed_when: False
+       always_run: yes
+     - name: Create folder to store configurations and diffs for/from the devices
+       file:
+         path: "{{ host_dir }}"
+         state: directory
+       changed_when: False
+       always_run: yes
+
+  tasks:
+    - name: A simple template with some configuration
+      template:
+        src: "{{ os }}/simple.j2"
+        dest: "{{ host_dir }}/simple.conf"
+      changed_when: False
+      always_run: yes
+    - name: Load configuration into the device
+      napalm_install_config:
+        hostname: "{{ host }}"
+        username: "{{ user }}"
+        dev_os: "{{ os }}"
+        password: "{{ password }}"
+        optional_args:
+          port: "{{ port }}"
+        config_file: "{{ host_dir }}/simple.conf"
+        replace_config: false
+        get_diffs: True
+        diff_file: "{{ host_dir }}/diff"
+      tags: [print_action, ]
