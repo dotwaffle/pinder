@@ -7,72 +7,14 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link href="{%  static 'css/main.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" />
 
     <!-- Include the AngularJS library -->
-    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
 <body ng-app="PinderApp" style="background-color:#dee3e3">
-<div class="margin-top-50" ng-controller="MainController">
-    <p class="text"><strong>Pinder</strong> peering is never been so sexy!</p>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <form>
-                    <div class="form-group">
-                        <label>Source</label>
-                        <input type="text" class="form-control" ng-model="scrASN" placeholder="Insert Source ASN">
-                    </div>
-                    <div class="form-group">
-                        <label>Destination</label>
-                        <input type="text" class="form-control" ng-model="dstASN" placeholder="Insert Source ASN">
-                    </div>
-                    <button type="submit" class="btn pinder-button pull-right" ng-click="findIX()">Submit</button>
-                </form>
-            </div>
-            <div class="col-md-8">
-                    <span ng-if="!showSuccessMessage">
-                        <p class="text-center"> You can peer with <strong> [[dstASN]] </strong> directly on these IXs</p>
-
-                        <div class="row">
-                            <div>
-                                <img class="img-responsive center-block margin-top-50" id="mySpinner" src="{% static 'img/loader.gif' %}" ng-show="loading" />
-                                <a class="col-md-4 col-md-offset-2 btn pinder-button margin-bottom-10" ng-click="sendRequest(ixp)" ng-repeat="ixp in ixpsl">
-                                    [[ixp.name]]
-                                </a>
-                                <a class="col-md-4 col-md-offset-2 btn pinder-button margin-bottom-10" ng-click="sendRequest(ixp)" ng-repeat="ixp in ixpsr">
-                                    [[ixp.name]]
-                                </a>
-                            </div>
-
-                        </div>
-                    </span>
-                    <span ng-if="showSuccessMessage">
-                        <div class="alert alert-success">
-                            <strong>Congrats!</strong> Your request has been sent!
-                        </div>
-                    </span>
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
-
-<!-- Modules -->
-<script src="{% static 'js/app.js' %}"></script>
-
-<!-- Controllers -->
-<script src="{% static 'js/controllers/MainController.js' %}"></script>
-
-<!-- Services -->
-<script src="{% static 'js/services/peeringDB.js' %}"></script>
-<script src="{% static 'js/services/pinder.js' %}"></script>
-
-
-<script src="{% static 'pinder/example.js' %}"></script>
+    {% block body %}{% endblock body %}
 </body>
