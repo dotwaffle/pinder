@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
+import json
 import requests
 
 class DataWrapper:
@@ -33,6 +34,8 @@ class Command(BaseCommand):
             help='List all entries in db')
         parser.add_argument('--filter', type=str,
             help='Display entries based upon specified state.')
+        parser.add_argument('--update', type=int,
+            help='Set state to finish for specified id')
 
 
     def display_entry_data(self, data):
@@ -65,16 +68,29 @@ class Command(BaseCommand):
                 return_lst.append(entry)
         return return_lst
 
+    def update_state(self, data):
+        url = "http://localhost:8000/api/requests/{}/".format(data['id'])
+        headers = {'content-type': 'application/json'}
+        data['state'] = 'finished'
+        resp = requests.put(url, json=data, headers=headers)
+        if resp.status_code != 200:
+            raise CommandError('PUT /requests/ {}'.format(data['id']))
+        else:
+            print("id {} status successfully set to finished".format(data['id']))
+
+    def get_entry(self, rid):
+        url = "http://localhost:8000/api/requests/{}".format(rid)
+        req = requests.get(url)
+        if req.status_code != 200:
+            raise CommandError('GET /requests/ {}'.format(req.status_code))
+        else:
+            return req.json()
+
     def handle(self, *args, **options):
         if options['state']:
             for entry in options['state']:
-                url = "http://localhost:8000/api/requests/{}".format(entry)
-                req = requests.get(url)
-                if req.status_code != 200:
-                    raise CommandError('GET /requests/ {}'.format(req.status_code))
-                else:
-                    result = req.json()
-                    print(self.display_entry_data(result))
+                entry_data = self.get_entry(entry)
+                print(self.display_entry_data(entry_data))
         elif options['filter']:
             reqs = requests.get('http://localhost:8000/api/requests/')
             if reqs.status_code != 200:
@@ -86,6 +102,9 @@ class Command(BaseCommand):
                     len(filtered), options['filter']))
                 for entry in filtered:
                     print(self.display_entry_data(entry))
+        elif options['update']:
+            entry_data = self.get_entry(options['update'])
+            self.update_state(entry_data)
         else:
             reqs = requests.get('http://localhost:8000/api/requests/')
             if reqs.status_code != 200:
