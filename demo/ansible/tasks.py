@@ -40,12 +40,7 @@ def get_requests(ctx):
 
 @invoke.task
 def complete_requests(ctx):
-    pinder = hammock.Hammock('http://127.0.0.1:8000', append_slash=True)
-    results = pinder.api.requests.GET().json()['results']
-
-    for r in results:
-        r['state'] = 'finished'
-        pinder.api.requests(r['id']).PUT(data=r)
+    results = invoke.run('../../pinder/manage.py cli --update-all')
 
 
 @invoke.task
