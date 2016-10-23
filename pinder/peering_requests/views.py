@@ -1,4 +1,4 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
@@ -35,6 +35,16 @@ class RequestViewSet(ModelViewSet):
         return RequestSerializer
 
 
+class RequestListView(ListView):
+    model = Request
+    template_name = "peering_requests/listing.html"
+
+
 class RequestDetailView(DetailView):
     model = Request
     template_name = "peering_requests/detail.html"
+
+
+class RequestAcceptanceView(DetailView):
+    model = Request
+    template_name = "peering_requests/acceptance.html"

@@ -3,7 +3,8 @@ from django.contrib import admin
 
 from rest_framework.routers import DefaultRouter
 
-from peering_requests.views import RequestViewSet, RequestDetailView
+from peering_requests.views import (
+    RequestViewSet, RequestDetailView, RequestAcceptanceView, RequestListView)
 from users.views import LoginView
 
 from .views import IndexView
@@ -20,7 +21,19 @@ urlpatterns = [
     ),
     url(r"^api/", include(router.urls, namespace="drf")),
     url(r"^$", IndexView.as_view(), name="index"),
-    url(r"requests/(?P<pk>\d+)", RequestDetailView.as_view(), name="request"),
+
+    url(r"requests/$", RequestListView.as_view(), name="request-list"),
+    url(
+        r"requests/(?P<pk>\d+)",
+        RequestAcceptanceView.as_view(),
+        name="request-detail"
+    ),
+    url(
+        r"requests/(?P<pk>\d+)/acceptance/",
+        RequestDetailView.as_view(),
+        name="request-acceptance"
+    ),
+
     url(r"hacks/login", LoginView.as_view(), name="login-hack"),
     url(r'^admin/', admin.site.urls),
 

@@ -1,0 +1,11 @@
+{% extends 'pinder/base.html' %}
+
+{% block body %}
+  <h2>Listing</h2>
+  In this page, you can access the requests in question with { { object_list } }:
+  <ul>
+    {% for object in object_list %}
+      <li>Request info: {{ object.id }}, {{ object.sender }}, {{ object.sender.isp }}</li>
+    {% endfor %}
+  </ul>
+{% endblock body %}
