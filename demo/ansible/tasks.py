@@ -35,9 +35,7 @@ def verify(ctx):
 
 @invoke.task
 def get_requests(ctx):
-    pinder = hammock.Hammock('http://127.0.0.1:8000', append_slash=True)
-    results = pinder.api.requests.GET().json()['results']
-    pprint_color(results)
+    results = invoke.run('../../pinder/manage.py cli --all')
 
 
 @invoke.task
