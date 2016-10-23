@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
 
-import json
 import requests
 
 class DataWrapper:
