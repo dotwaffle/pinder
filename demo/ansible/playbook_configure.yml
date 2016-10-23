@@ -51,3 +51,8 @@
         get_diffs: True
         diff_file: "{{ host_dir }}/diff"
       tags: [print_action, ]
+    - name: Confirm peering
+      pinder_confirm:
+        sessions: "{{ accepted_requests.sessions }}"
+        asn: "{{ asn }}"
+      tags: [print_action]
