@@ -2,6 +2,26 @@ from django.core.management.base import BaseCommand
 
 import requests
 
+class DataWrapper:
+    def __init__(self, dict_data=None):
+        self._data = dict_data or {}
+
+    @classmethod
+    def _wrap_type(cls, data):
+        if isinstance(data, dict):
+            return cls(data)
+        elif isinstance(data, list):
+            return [cls._wrap_type(d) for d in data]
+        else:
+            return data
+
+    def __getattr__(self, name):
+        try:
+            attr = self._data[name]
+        except KeyError:
+            raise AttributeError(name)
+        return self._wrap_type(attr)
+
 class Command(BaseCommand):
 
     help = "A CLI script.  Whatever you like can be here."
@@ -11,7 +31,8 @@ class Command(BaseCommand):
         parser.add_argument('--all', action='store_true', default='True',
             help='List all entries in db')
 
-    def display_entry_data(self, entry):
+    def display_entry_data(self, data):
+        req_data = DataWrapper(data)
         template = """
             id: {}
             sender: {}
@@ -23,18 +44,15 @@ class Command(BaseCommand):
             modified: {}
         """
         return template.format(
-            entry['id'],
-            entry['sender']['name'],
-            entry['receiver']['name'],
-            entry['state'],
-            entry['sender_is_ready'],
-            entry['receiver_is_ready'],
-            entry['created'],
-            entry['modified'],
+            req_data.id,
+            req_data.sender.name,
+            req_data.receiver.name,
+            req_data.state,
+            req_data.sender_is_ready,
+            req_data.receiver_is_ready,
+            req_data.created,
+            req_data.modified,
             )
-
-    def get_entry(self, entry):
-        pass
 
     def handle(self, *args, **options):
         if options['state']:
