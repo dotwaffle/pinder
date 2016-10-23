@@ -9,12 +9,14 @@ class Request(models.Model):
     STATE_IN_PROGRESS = "in-progress"
     STATE_HOLD = "hold"
     STATE_REJECTED = "rejected"
+    STATE_FINISHED = "finished"
 
     STATES = (
         (STATE_WAITING, "Waiting"),
         (STATE_IN_PROGRESS, "In Progress"),
         (STATE_HOLD, "On Hold"),
         (STATE_REJECTED, "Rejected"),
+        (STATE_FINISHED, "Finished"),
     )
 
     sender = models.ForeignKey(
