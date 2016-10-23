@@ -166,3 +166,7 @@ h2 {
     color: #FC4343;
     text-decoration: none;
 }
+
+.pointer-cursor{
+    cursor: pointer;
+}

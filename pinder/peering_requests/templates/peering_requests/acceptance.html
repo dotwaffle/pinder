@@ -1,43 +1,50 @@
 {% extends 'pinder/base.html' %}
 {% load staticfiles %}
 {% block body %}
-  <div class="margin-top-50" ng-controller="PinderController">
-  <p class="text"><strong>Pinder</strong> Swipe Right On A New Peering Relationship!</p>
+    <div class="margin-top-50" ng-controller="PinderController" ng-init="getRequest('{{ object.id }}')">
+    <p class="text"><strong>Pinder</strong> Swipe Right On A New Peering Relationship!</p>
     <div class="container">
         <div class="col-md-4 col-md-offset-4">
-                <div class="card">
-                    <div class="card-content text-center">
-                            <p><b>Peering Request</b></p>
-                        </div>
-                    <div class="card-action">
-                        <p>Sender email <b>{{ object.sender.email }}</b>
-                        <img style="height: 50px;margin-left: 9%;" src="https://qph.ec.quoracdn.net/main-qimg-d5aa790ac72d8bf10643e2139624f16c?convert_to_webp=true">
-                        </p>
-                            <span >
+            <div class="card" ng-if="!showSuccessMessage">
+                <div class="card-content text-center">
+                    <p><b>Peering Request</b></p>
+                </div>
+                <div class="card-action">
+                    <p>Sender email <b>[[ object.sender.email ]]</b>
+                        <img style="height: 50px;margin-left: 9%;"
+                             src="https://qph.ec.quoracdn.net/main-qimg-d5aa790ac72d8bf10643e2139624f16c?convert_to_webp=true">
+                    </p>
+                            <span>
                             <p>ISP Infos</p>
                             <ul>
                                 <li>
-                                    <p>Name <strong>{{ object.sender.isp.name }}</strong></p>
+                                    <p>Name <strong>[[ object.sender.isp.name ]]</strong></p>
                                 </li>
                                 <li>
-                                    <p>ASN <strong>{{ object.sender.isp.asn }}</strong></p>
+                                    <p>ASN <strong>[[ object.sender.isp.asn ]]</strong></p>
                                 </li>
                             </ul>
                         </span>
-                        <p>
-                            He wants to peer on ix-lan <strong>{{ object.ixlan_id }}</strong>
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a type="button" class="pointer-cursor">
-                            <img style="height: 40px" src="https://roneelprasad.files.wordpress.com/2014/05/tinder-nope.png">
-                        </a>
-                        <a type="button" class="pointer-cursor pull-right">
-                            <img style="height: 40px" src="http://www.cartesiani.it/tinder-report/images/Tinder-UILike.png">
-                        </a>
-                    </div>
+                    <p>
+                        He wants to peer on ix-lan <strong>[[ object.ixlan_id ]]</strong>
+                    </p>
+                </div>
+                <div class="card-action">
+                    <a type="button" class="pointer-cursor" ng-click="handleRequest('rejected','{{ object.id }}')">
+                        <img style="height: 40px"
+                             src="https://roneelprasad.files.wordpress.com/2014/05/tinder-nope.png">
+                    </a>
+                    <a type="button" class="pointer-cursor pull-right"
+                       ng-click="handleRequest('in-progress','{{ object.id }}')">
+                        <img style="height: 40px" src="http://www.cartesiani.it/tinder-report/images/Tinder-UILike.png">
+                    </a>
                 </div>
             </div>
+            <span  ng-if="showSuccessMessage">
+                <div class="alert alert-success">
+                        <p><strong>Request status changed!</strong></p><a style="text-decoration: none" href="/requests">Come back to your pending requests</a>
+                </div>
+            </span>
+        </div>
     </div>
-  </div>
 {% endblock body %}
