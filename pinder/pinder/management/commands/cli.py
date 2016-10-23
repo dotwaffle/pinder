@@ -35,6 +35,8 @@ class Command(BaseCommand):
             help='Display entries based upon specified state.')
         parser.add_argument('--update', type=int,
             help='Set state to finish for specified id')
+        parser.add_argument('--update-all', action='store_true',
+            default='False', help='Set state to finish for all entries in db')
 
 
     def display_entry_data(self, data):
@@ -85,6 +87,14 @@ class Command(BaseCommand):
         else:
             return req.json()
 
+    def get_all(self):
+        url = "http://localhost:8000/api/requests/"
+        reqs = requests.get(url)
+        if reqs.status_code != 200:
+            raise CommandError('GET /requests/ {}'.format(reqs.status_code))
+        else:
+            return reqs.json()['results']
+
     def handle(self, *args, **options):
         if options['state']:
             for entry in options['state']:
@@ -104,6 +114,10 @@ class Command(BaseCommand):
         elif options['update']:
             entry_data = self.get_entry(options['update'])
             self.update_state(entry_data)
+        elif options['update_all'] is True:
+            reqs = self.get_all()
+            for req in reqs:
+                self.update_state(req)
         else:
             reqs = requests.get('http://localhost:8000/api/requests/')
             if reqs.status_code != 200:
