@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,9 +11,12 @@
     <link href="{% static 'css/main.css' %}" rel="stylesheet" />
 
     <!-- Include the AngularJS library -->
+
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.7.0/angular-moment.min.js"></script>
 </head>
 
 <body ng-app="PinderApp" style="background-color:#dee3e3">

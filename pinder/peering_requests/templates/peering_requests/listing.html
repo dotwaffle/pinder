@@ -1,11 +1,57 @@
 {% extends 'pinder/base.html' %}
-
+{% load staticfiles %}
 {% block body %}
-  <h2>Listing</h2>
-  In this page, you can access the requests in question with { { object_list } }:
-  <ul>
-    {% for object in object_list %}
-      <a href="/requests/{{  object.id  }}"><li>Request info: {{ object.id }}, {{ object.sender }}, {{ object.sender.isp }}</li></a>
-    {% endfor %}
-  </ul>
+    <div class="margin-top-50" ng-controller="PinderController" ng-init="getRequests()">
+        <p class="text"><strong>Pinder</strong> Swipe Right On A New Peering Relationship!</p>
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Incoming Requests</strong>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Sender Infos</th>
+                            <th>ISP Infos</th>
+                            <th>Created At</th>
+                            <th>Request Status</th>
+                            <th>Go</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="request in requests | orderBy:'-created' ">
+
+                                    <th scope="row">
+                                        [[ request.id]]
+                                    </th>
+                                    <td>
+                                        [[request.sender.name]] ([[request.sender.email]])
+                                    </td>
+                                    <td>
+                                        [[request.sender.isp.name]] - [[request.sender.isp.asn]]
+                                    </td>
+                                    <td>[[request.created | timeago ]]</td>
+                                    <td>
+                                        <span style="width: 75%" class="btn nohover pinder-button-[[request.state]]"> [[request.state]] </span>
+                                    </td>
+                                    <td>
+                                        <span ng-if="request.state=='waiting'">
+                                            <a href="/requests/[[request.id]]" >
+                                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                                                </button>
+                                            </a>
+                                        </span>
+
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock body %}

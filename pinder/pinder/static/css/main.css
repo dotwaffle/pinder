@@ -79,6 +79,9 @@ h2 {
  margin-bottom: 100px;
 }
 
+
+/** CUSTOM BUTTONS**/
+
 .pinder-button,
 .pinder-button:focus {
   color: #fff;
@@ -95,6 +98,60 @@ h2 {
 .pinder-button a {
   text-decoration: none;
 }
+
+.pinder-button-waiting,
+.pinder-button-waiting:focus {
+  color: #fff;
+  background-color: #1F2532;
+  border: none;
+}
+
+.pinder-button-waiting:hover {
+  color: #67CBDB;
+  background-color: #516063;
+  border-color: #FC4343;
+}
+
+.pinder-button-waiting a {
+  text-decoration: none;
+}
+
+
+.pinder-button-rejected,
+.pinder-button-rejected:focus:hover {
+  color: #fff;
+  background-color: #FC4343;
+  border: none;
+}
+
+.pinder-button-rejected:hover {
+  color: #67CBDB;
+  background-color: #FC4343;
+  border-color: #FC4343;
+}
+
+.pinder-button-rejected a {
+  text-decoration: none;
+}
+
+
+.pinder-button-in-progress,
+.pinder-button-in-progress:focus {
+  color: #fff;
+  background-color: #5cb85c;
+  border: none;
+}
+
+.pinder-button-in-progress:hover {
+  color: #67CBDB;
+  background-color: #5cb85c;
+  border-color: #FC4343;
+}
+
+.pinder-button-in-progress a {
+  text-decoration: none;
+}
+
 .margin-top-10{
 
 }
@@ -169,4 +226,9 @@ h2 {
 
 .pointer-cursor{
     cursor: pointer;
+}
+.btn.nohover:hover {
+    /* here copy default .btn class styles */
+    cursor: default !important;
+    /* or something like that */
 }

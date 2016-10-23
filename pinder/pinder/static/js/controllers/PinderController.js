@@ -1,6 +1,7 @@
 app.controller('PinderController',  function($scope, pinderFactory) {
 
     $scope.object = {};
+    $scope.requests = [];
     $scope.showSuccessMessage = false;
     $scope.getRequest = function(r_id){
          pinderFactory.getRequestByID(r_id)
@@ -10,6 +11,14 @@ app.controller('PinderController',  function($scope, pinderFactory) {
             alert(err);});
     };
 
+    $scope.getRequests = function(){
+        pinderFactory.getAllRequests()
+        .then(function(data){
+            $scope.requests = data.results;
+            console.log($scope.requests);
+        },function(err){
+            alert(err);});
+    };
     $scope.handleRequest = function (state,r_id) {
         var data = {
               state: state
