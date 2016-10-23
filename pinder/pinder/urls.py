@@ -22,19 +22,19 @@ urlpatterns = [
     url(r"^api/", include(router.urls, namespace="drf")),
     url(r"^$", IndexView.as_view(), name="index"),
 
-    url(r"requests/$", RequestListView.as_view(), name="request-list"),
+    url(r"^requests/$", RequestListView.as_view(), name="request-list"),
     url(
-        r"requests/(?P<pk>\d+)",
+        r"^requests/(?P<pk>\d+)",
         RequestAcceptanceView.as_view(),
         name="request-detail"
     ),
     url(
-        r"requests/(?P<pk>\d+)/acceptance/",
+        r"^requests/(?P<pk>\d+)/acceptance/",
         RequestDetailView.as_view(),
         name="request-acceptance"
     ),
 
-    url(r"hacks/login", LoginView.as_view(), name="login-hack"),
+    url(r"^hacks/login", LoginView.as_view(), name="login-hack"),
     url(r'^admin/', admin.site.urls),
 
 ]
