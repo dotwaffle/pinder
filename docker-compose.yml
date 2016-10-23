@@ -1,0 +1,9 @@
+version: '2'
+services:
+  app:
+    build: .
+    command: python pinder/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "localhost:8000:8000"
