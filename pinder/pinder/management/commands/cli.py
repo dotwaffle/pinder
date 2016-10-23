@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
 import requests
 
@@ -60,14 +60,14 @@ class Command(BaseCommand):
                 url = "http://localhost:8000/api/requests/{}".format(entry)
                 req = requests.get(url)
                 if req.status_code != 200:
-                    raise ApiError('GET /requests/ {}'.format(reqs.status_code))
+                    raise CommandError('GET /requests/ {}'.format(req.status_code))
                 else:
                     result = req.json()
                     print(self.display_entry_data(result))
         else:
             reqs = requests.get('http://localhost:8000/api/requests/')
             if reqs.status_code != 200:
-                raise ApiError('GET /requests/ {}'.format(reqs.status_code))
+                raise CommandError('GET /requests/ {}'.format(reqs.status_code))
             else:
                 result = reqs.json()
                 for req in result['results']:
