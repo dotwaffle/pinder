@@ -27,9 +27,13 @@ class Command(BaseCommand):
     help = "A CLI script.  Whatever you like can be here."
 
     def add_arguments(self, parser):
-        parser.add_argument('--state', nargs='+', type=int)
+        parser.add_argument('--state', nargs='+', type=int,
+            help='Get info for specified id')
         parser.add_argument('--all', action='store_true', default='True',
             help='List all entries in db')
+        parser.add_argument('--filter', type=str,
+            help='Display entries based upon specified state.')
+
 
     def display_entry_data(self, data):
         req_data = DataWrapper(data)
@@ -54,6 +58,13 @@ class Command(BaseCommand):
             req_data.modified,
             )
 
+    def filter_state(self, state, data):
+        return_lst = []
+        for entry in data['results']:
+            if entry['state'] == state:
+                return_lst.append(entry)
+        return return_lst
+
     def handle(self, *args, **options):
         if options['state']:
             for entry in options['state']:
@@ -64,6 +75,17 @@ class Command(BaseCommand):
                 else:
                     result = req.json()
                     print(self.display_entry_data(result))
+        elif options['filter']:
+            reqs = requests.get('http://localhost:8000/api/requests/')
+            if reqs.status_code != 200:
+                raise CommandError('GET /requests/ {}'.format(reqs.status_code))
+            else:
+                result = reqs.json()
+                filtered = self.filter_state(options['filter'], result)
+                print("Found {} entries matching state {}".format(
+                    len(filtered), options['filter']))
+                for entry in filtered:
+                    print(self.display_entry_data(entry))
         else:
             reqs = requests.get('http://localhost:8000/api/requests/')
             if reqs.status_code != 200:
